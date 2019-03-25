@@ -39,6 +39,7 @@
 										<li><a href="#"><i class="fa fa-angle-right"></i>Tickets</a></li>
 										<li><a href="#"><i class="fa fa-angle-right"></i>News</a></li>
 										<li><a href="#"><i class="fa fa-angle-right"></i>Schedule</a></li>
+										<li><a href="shop"><i class="fa fa-angle-right"></i>Shop</a></li>
 									</ul>
 
 								</div>
