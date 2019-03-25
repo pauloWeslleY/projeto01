@@ -235,7 +235,23 @@ $app->delete("/carrinho-produto", function(){
 
 $app->get("/calcular-frete-:cep", function($cep){
 
-    require_once("include/php-calcular-frete-correios-master/frete.php");
+    require_once("include/php-calcular-frete-master/frete.php");
+
+    $sql = new Sql();
+
+    $result = $sql->select("CALL sp_carrinhos_get('".session_id()."')");
+
+    $carrinho = $result[0];
+
+    $sql = new Sql();
+
+    $produtos = $sql->select("CALL sp_carrinhosprodutosfrete_list(".$carrinho['id_car'].")");
+
+    $peso = 0; 
+    $comprimento = 0;
+    $altura = 0;
+    $largura = 0;
+    $valor = 0;
 
     $frete = new Frete(
         $cepDeOrigem = '05858030', 
@@ -248,7 +264,7 @@ $app->get("/calcular-frete-:cep", function($cep){
     );
 
     echo json_encode(array(
-        'valor-frete'=>$frete->getValor()
+        'valor_frete'=>$frete->getValor()
     ));
 
 });
